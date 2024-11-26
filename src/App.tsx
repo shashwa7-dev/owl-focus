@@ -108,7 +108,13 @@ const Timer: React.FC = () => {
   };
 
   const handleReset = () => {
-    setTime(presetTimer[30] ? PRESET_TIMER[30] : PRESET_TIMER[60]);
+    setTime(
+      presetTimer[5]
+        ? PRESET_TIMER[5]
+        : presetTimer[30]
+        ? PRESET_TIMER[30]
+        : PRESET_TIMER[60]
+    );
     setIsRunning(false);
     setIsComplete(false);
     setAudioPlayCount(0);
@@ -127,7 +133,9 @@ const Timer: React.FC = () => {
       }`}
     >
       <div className="p-8 rounded-lg  text-center">
-        <div className={`text-[20vw] font-bold max-md:text-[30vw]`}>{formatTime(time)}</div>
+        <div className={`text-[20vw] font-bold max-md:text-[30vw]`}>
+          {formatTime(time)}
+        </div>
         <audio ref={audioRef} src={SOUNDS.sound_chimes} className="hidden" />
       </div>
       <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 w-full grid place-items-center">
